@@ -7,9 +7,14 @@ from rest_framework import viewsets
 from .models import MeuModelo
 from .serializers import MeuModeloSerializer
 
+from rest_framework.viewsets import ModelViewSet
+from .models import MeuModelo
+from .pagination import CustomPagination
+
 class MeuModeloViewSet(viewsets.ModelViewSet):
     queryset = MeuModelo.objects.all()
     serializer_class = MeuModeloSerializer
+    pagination_class = CustomPagination  # Ou use a configuração global
 
 @csrf_exempt
 def update(request):
