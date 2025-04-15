@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "debug_toolbar",
     "rest_framework.authtoken",
+    "bookstore",
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,14 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+# Diretório para arquivos estáticos adicionais (apenas para desenvolvimento)
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Substitua "static" pelo nome correto do diretório, se necessário
+]
+
+# Diretório onde os arquivos estáticos serão coletados (apenas para produção)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -152,5 +161,3 @@ INTERNAL_IPS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'

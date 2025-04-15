@@ -3,7 +3,13 @@ from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
 
 import git
+from rest_framework import viewsets
+from .models import MeuModelo
+from .serializers import MeuModeloSerializer
 
+class MeuModeloViewSet(viewsets.ModelViewSet):
+    queryset = MeuModelo.objects.all()
+    serializer_class = MeuModeloSerializer
 
 @csrf_exempt
 def update(request):

@@ -1,23 +1,16 @@
-"""bookstore URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+from django.urls import path, include, re_path
+from django.contrib import admin
+from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
 import debug_toolbar
 from bookstore import views
-from django.contrib import admin
-from django.urls import include, path, re_path
-from rest_framework.authtoken.views import obtain_auth_token
+from order.views import OrderViewSet  # Exemplo de viewsets que você possa precisar registrar
+from product.views import ProductViewSet  # Exemplo adicional
+from .views import MeuModeloViewSet  # Importe aqui o seu ViewSet
+
+# Criação do roteador para ViewSets
+router = DefaultRouter()
+router.register(r'meumodelo', MeuModeloViewSet)  # Registro do MeuModeloViewSet
 
 urlpatterns = [
     path("__debug__/", include(debug_toolbar.urls)),
@@ -27,4 +20,5 @@ urlpatterns = [
     path("api-token-auth/", obtain_auth_token, name="api_token_auth"),
     path("update_server/", views.update, name="update"),
     path('hello/', views.hello_world, name='hello_world'),
+    path("", include(router.urls)),  # Inclua o roteador principal
 ]
