@@ -4,8 +4,6 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
 import debug_toolbar
 from bookstore import views
-from order.views import OrderViewSet  # Exemplo de viewsets que você possa precisar registrar
-from product.views import ProductViewSet  # Exemplo adicional
 from .views import MeuModeloViewSet  # Importe aqui o seu ViewSet
 
 # Criação do roteador para ViewSets
