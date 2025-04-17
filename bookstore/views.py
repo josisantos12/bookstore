@@ -4,18 +4,16 @@ from django.views.decorators.csrf import csrf_exempt
 
 import git
 from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
 from .models import MeuModelo
 from .serializers import MeuModeloSerializer
 
-from rest_framework.viewsets import ModelViewSet
-from .models import MeuModelo
-from .pagination import CustomPagination
 
 class MeuModeloViewSet(viewsets.ModelViewSet):
     queryset = MeuModelo.objects.all()
     serializer_class = MeuModeloSerializer
-    pagination_class = CustomPagination  # Ou use a configuração global
-
+    permission_classes = [AllowAny]  # Permite acesso público
+    authentication_classes = []
 @csrf_exempt
 def update(request):
     if request.method == "POST":
@@ -24,7 +22,7 @@ def update(request):
         stored on PythonAnywhere in the git.Repo() as parameter.
         Here the name of my directory is "test.pythonanywhere.com"
         '''
-        repo = git.Repo('/home/drsantos20/bookstore')
+        repo = git.Repo('/home/josisantos12/bookstore')
         origin = repo.remotes.origin
 
         origin.pull()
