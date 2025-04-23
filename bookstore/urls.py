@@ -6,7 +6,6 @@ import debug_toolbar
 from bookstore import views
 from .views import MeuModeloViewSet  # Importe aqui o seu ViewSet
 
-# Criação do roteador para ViewSets
 router = DefaultRouter()
 router.register(r'meumodelo', MeuModeloViewSet)  # Registro do MeuModeloViewSet
 
